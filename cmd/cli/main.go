@@ -3,6 +3,7 @@ package cli
 import (
 	c "github.com/urfave/cli/v2"
 
+	"github.com/wesleimp/rain/cmd/cli/commands/build"
 	ini "github.com/wesleimp/rain/cmd/cli/commands/init"
 )
 
@@ -19,6 +20,7 @@ func Execute(version string, args []string) error {
 		}},
 		Commands: []*c.Command{
 			ini.Command,
+			build.Command,
 		},
 	}
 

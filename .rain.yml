@@ -1,3 +1,10 @@
 # .rain.yml
 project_name: 'app'
 
+dockers:
+  - dockerfile: 'Dockerfile'
+    image_templates:
+      - 'local/rain:latest'
+    extra_files:
+      - glob: scripts/entrypoint.sh
+      - glob: rain

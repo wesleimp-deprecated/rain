@@ -1,13 +1,11 @@
 FROM golang:1.14-alpine AS base
-WORKDIR /app
 
-FROM base as builder
-COPY go.mod go.sum ./
-RUN go mod download
-COPY . .
-RUN go build -o rain main.go
+RUN apk add --no-cache bash curl docker-cli git mercurial make
 
-FROM scratch as final
-WORKDIR /app
-COPY --from=builder /app/rain /app
-ENTRYPOINT ["./rain"]
+ENTRYPOINT ["/entrypoint.sh"]
+CMD [ "-h" ]
+
+COPY scripts/entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+COPY rain /bin/rain

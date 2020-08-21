@@ -9,11 +9,26 @@ import (
 	"gopkg.in/yaml.v2"
 )
 
+// File struct
+type File struct {
+	Glob string `yaml:",omitempty"`
+}
+
+// Docker contains all informarmation for build docker images
+type Docker struct {
+	Dockerfile         string   `yaml:",omitempty"`
+	ImageTemplates     []string `yaml:"image_templates"`
+	BuildFlagTemplates []string `yaml:"build_flag_templates,omitempty"`
+	SkipPush           bool     `yaml:"skip_push,omitempty"`
+	Files              []File   `yaml:"extra_files,omitempty"`
+}
+
 // Config contains the project configuration
 type Config struct {
 	ProjectName string   `yaml:"project_name,omitempty"`
 	Version     string   `yaml:",omitempty"`
 	Env         []string `yaml:",omitempty"`
+	Dockers     []Docker `yaml:",omitempty"`
 	Dist        string   `yaml:",omitempty"`
 }
 
