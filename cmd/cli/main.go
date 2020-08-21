@@ -1,0 +1,26 @@
+package cli
+
+import (
+	c "github.com/urfave/cli/v2"
+
+	ini "github.com/wesleimp/rain/cmd/cli/commands/init"
+)
+
+// Execute cli
+func Execute(version string, args []string) error {
+	app := &c.App{
+		Name:     "rain",
+		HelpName: "rain",
+		Usage:    "Deploy docker images and keep yout environments updated",
+		Version:  version,
+		Authors: []*c.Author{{
+			Name:  "Weslei Juan Moser Pereira",
+			Email: "wesleimsr@gmail.com",
+		}},
+		Commands: []*c.Command{
+			ini.Command,
+		},
+	}
+
+	return app.Run(args)
+}
