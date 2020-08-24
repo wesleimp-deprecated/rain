@@ -58,12 +58,12 @@ func killAndRm(t *testing.T) {
 
 func TestRunPipe(t *testing.T) {
 	type errChecker func(*testing.T, error)
-	// var shouldErr = func(msg string) errChecker {
-	// 	return func(t *testing.T, err error) {
-	// 		assert.Error(t, err)
-	// 		assert.Contains(t, err.Error(), msg)
-	// 	}
-	// }
+	var shouldErr = func(msg string) errChecker {
+		return func(t *testing.T, err error) {
+			assert.Error(t, err)
+			assert.Contains(t, err.Error(), msg)
+		}
+	}
 	var shouldNotErr = func(t *testing.T, err error) {
 		assert.NoError(t, err)
 	}
@@ -82,7 +82,7 @@ func TestRunPipe(t *testing.T) {
 		}
 
 	}
-	//var noLabels = func(t *testing.T, count int) {}
+	var noLabels = func(t *testing.T, count int) {}
 
 	var table = map[string]struct {
 		dockers           []config.Docker
@@ -123,151 +123,151 @@ func TestRunPipe(t *testing.T) {
 			assertError:    shouldNotErr,
 			pubAssertError: shouldNotErr,
 		},
-		// "multiple images with same dockerfile": {
-		// 	dockers: []config.Docker{
-		// 		{
-		// 			ImageTemplates: []string{
-		// 				registry + "dim/test_run_pipe:latest",
-		// 			},
-		// 			Dockerfile: "testdata/Dockerfile",
-		// 			Files:      []config.File{{Glob: "file.txt"}},
-		// 		},
-		// 		{
-		// 			ImageTemplates: []string{
-		// 				registry + "dim/test_run_pipe2:latest",
-		// 			},
-		// 			Dockerfile: "testdata/Dockerfile",
-		// 			Files:      []config.File{{Glob: "file.txt"}},
-		// 		},
-		// 	},
-		// 	assertImageLabels: noLabels,
-		// 	expect: []string{
-		// 		registry + "dim/test_run_pipe:latest",
-		// 		registry + "dim/test_run_pipe2:latest",
-		// 	},
-		// 	assertError:    shouldNotErr,
-		// 	pubAssertError: shouldNotErr,
-		// },
-		// "valid_no_binaries": {
-		// 	dockers: []config.Docker{
-		// 		{
-		// 			ImageTemplates: []string{
-		// 				registry + "dim/test_run_pipe:latest",
-		// 			},
-		// 			Dockerfile: "testdata/Dockerfile.bin",
-		// 			Files:      []config.File{{Glob: "file.txt"}},
-		// 			SkipPush:   true,
-		// 		},
-		// 	},
-		// 	expect: []string{
-		// 		registry + "dim/test_run_pipe:latest",
-		// 	},
-		// 	assertImageLabels: noLabels,
-		// 	assertError:       shouldNotErr,
-		// },
-		// "valid_skip_push": {
-		// 	dockers: []config.Docker{
-		// 		{
-		// 			ImageTemplates: []string{
-		// 				registry + "dim/test_run_pipe:latest",
-		// 			},
-		// 			Dockerfile: "testdata/Dockerfile",
-		// 			Files:      []config.File{{Glob: "file.txt"}},
-		// 			SkipPush:   true,
-		// 		},
-		// 	},
-		// 	expect: []string{
-		// 		registry + "dim/test_run_pipe:latest",
-		// 	},
-		// 	assertImageLabels: noLabels,
-		// 	assertError:       shouldNotErr,
-		// },
-		// "valid build args": {
-		// 	dockers: []config.Docker{
-		// 		{
-		// 			ImageTemplates: []string{
-		// 				registry + "dim/test_build_args:latest",
-		// 			},
-		// 			Dockerfile: "testdata/Dockerfile",
-		// 			Files:      []config.File{{Glob: "file.txt"}},
-		// 			BuildFlagTemplates: []string{
-		// 				"--label=foo=bar",
-		// 			},
-		// 		},
-		// 	},
-		// 	expect: []string{
-		// 		registry + "dim/test_build_args:latest",
-		// 	},
-		// 	assertImageLabels: noLabels,
-		// 	assertError:       shouldNotErr,
-		// 	pubAssertError:    shouldNotErr,
-		// },
-		// "bad build args": {
-		// 	dockers: []config.Docker{
-		// 		{
-		// 			ImageTemplates: []string{
-		// 				registry + "dim/test_build_args:latest",
-		// 			},
-		// 			Dockerfile: "testdata/Dockerfile",
-		// 			Files:      []config.File{{Glob: "file.txt"}},
-		// 			BuildFlagTemplates: []string{
-		// 				"--bad-flag",
-		// 			},
-		// 		},
-		// 	},
-		// 	assertImageLabels: noLabels,
-		// 	assertError:       shouldErr("unknown flag: --bad-flag"),
-		// },
-		// "bad_dockerfile": {
-		// 	dockers: []config.Docker{
-		// 		{
-		// 			ImageTemplates: []string{
-		// 				registry + "dim/bad_dockerfile:latest",
-		// 			},
-		// 			Dockerfile: "testdata/Dockerfile.invalid",
-		// 		},
-		// 	},
-		// 	assertImageLabels: noLabels,
-		// 	assertError:       shouldErr("pull access denied for none, repository does not exist"),
-		// },
-		// "missing_env_on_tag_template": {
-		// 	dockers: []config.Docker{
-		// 		{
-		// 			ImageTemplates: []string{
-		// 				registry + "dim/test_run_pipe:{{.Env.NONE}}",
-		// 			},
-		// 			Dockerfile: "testdata/Dockerfile",
-		// 			Files:      []config.File{{Glob: "file.txt"}},
-		// 		},
-		// 	},
-		// 	assertImageLabels: noLabels,
-		// 	assertError:       shouldErr(`template: tmpl:1:39: executing "tmpl" at <.Env.NONE>: map has no entry for key "NONE"`),
-		// },
-		// "no_permissions": {
-		// 	dockers: []config.Docker{
-		// 		{
-		// 			ImageTemplates: []string{"docker.io/none:latest"},
-		// 			Dockerfile:     "testdata/Dockerfile",
-		// 			Files:          []config.File{{Glob: "file.txt"}},
-		// 		},
-		// 	},
-		// 	expect: []string{
-		// 		"docker.io/none:latest",
-		// 	},
-		// 	assertImageLabels: noLabels,
-		// 	assertError:       shouldNotErr,
-		// 	pubAssertError:    shouldErr(`requested access to the resource is denied`),
-		// },
-		// "dockerfile_doesnt_exist": {
-		// 	dockers: []config.Docker{
-		// 		{
-		// 			ImageTemplates: []string{"whatever:latest"},
-		// 			Dockerfile:     "testdata/Dockerfilezzz",
-		// 		},
-		// 	},
-		// 	assertImageLabels: noLabels,
-		// 	assertError:       shouldErr(`failed to link dockerfile`),
-		// },
+		"multiple images with same dockerfile": {
+			dockers: []config.Docker{
+				{
+					ImageTemplates: []string{
+						registry + "dim/test_run_pipe:latest",
+					},
+					Dockerfile: "testdata/Dockerfile",
+					Files:      []config.File{{Glob: "testdata/file.txt"}},
+				},
+				{
+					ImageTemplates: []string{
+						registry + "dim/test_run_pipe2:latest",
+					},
+					Dockerfile: "testdata/Dockerfile",
+					Files:      []config.File{{Glob: "testdata/file.txt"}},
+				},
+			},
+			assertImageLabels: noLabels,
+			expect: []string{
+				registry + "dim/test_run_pipe:latest",
+				registry + "dim/test_run_pipe2:latest",
+			},
+			assertError:    shouldNotErr,
+			pubAssertError: shouldNotErr,
+		},
+		"valid_no_binaries": {
+			dockers: []config.Docker{
+				{
+					ImageTemplates: []string{
+						registry + "dim/test_run_pipe:latest",
+					},
+					Dockerfile: "testdata/Dockerfile.bin",
+					Files:      []config.File{{Glob: "testdata/file.txt"}},
+					SkipPush:   true,
+				},
+			},
+			expect: []string{
+				registry + "dim/test_run_pipe:latest",
+			},
+			assertImageLabels: noLabels,
+			assertError:       shouldNotErr,
+		},
+		"valid_skip_push": {
+			dockers: []config.Docker{
+				{
+					ImageTemplates: []string{
+						registry + "dim/test_run_pipe:latest",
+					},
+					Dockerfile: "testdata/Dockerfile",
+					Files:      []config.File{{Glob: "testdata/file.txt"}},
+					SkipPush:   true,
+				},
+			},
+			expect: []string{
+				registry + "dim/test_run_pipe:latest",
+			},
+			assertImageLabels: noLabels,
+			assertError:       shouldNotErr,
+		},
+		"valid build args": {
+			dockers: []config.Docker{
+				{
+					ImageTemplates: []string{
+						registry + "dim/test_build_args:latest",
+					},
+					Dockerfile: "testdata/Dockerfile",
+					Files:      []config.File{{Glob: "testdata/file.txt"}},
+					BuildFlagTemplates: []string{
+						"--label=foo=bar",
+					},
+				},
+			},
+			expect: []string{
+				registry + "dim/test_build_args:latest",
+			},
+			assertImageLabels: noLabels,
+			assertError:       shouldNotErr,
+			pubAssertError:    shouldNotErr,
+		},
+		"bad build args": {
+			dockers: []config.Docker{
+				{
+					ImageTemplates: []string{
+						registry + "dim/test_build_args:latest",
+					},
+					Dockerfile: "testdata/Dockerfile",
+					Files:      []config.File{{Glob: "testdata/file.txt"}},
+					BuildFlagTemplates: []string{
+						"--bad-flag",
+					},
+				},
+			},
+			assertImageLabels: noLabels,
+			assertError:       shouldErr("unknown flag: --bad-flag"),
+		},
+		"bad_dockerfile": {
+			dockers: []config.Docker{
+				{
+					ImageTemplates: []string{
+						registry + "dim/bad_dockerfile:latest",
+					},
+					Dockerfile: "testdata/Dockerfile.invalid",
+				},
+			},
+			assertImageLabels: noLabels,
+			assertError:       shouldErr("pull access denied for none, repository does not exist"),
+		},
+		"missing_env_on_tag_template": {
+			dockers: []config.Docker{
+				{
+					ImageTemplates: []string{
+						registry + "dim/test_run_pipe:{{.Env.NONE}}",
+					},
+					Dockerfile: "testdata/Dockerfile",
+					Files:      []config.File{{Glob: "testdata/file.txt"}},
+				},
+			},
+			assertImageLabels: noLabels,
+			assertError:       shouldErr(`template: tmpl:1:39: executing "tmpl" at <.Env.NONE>: map has no entry for key "NONE"`),
+		},
+		"no_permissions": {
+			dockers: []config.Docker{
+				{
+					ImageTemplates: []string{"docker.io/none:latest"},
+					Dockerfile:     "testdata/Dockerfile",
+					Files:          []config.File{{Glob: "testdata/file.txt"}},
+				},
+			},
+			expect: []string{
+				"docker.io/none:latest",
+			},
+			assertImageLabels: noLabels,
+			assertError:       shouldNotErr,
+			pubAssertError:    shouldErr(`requested access to the resource is denied`),
+		},
+		"dockerfile_doesnt_exist": {
+			dockers: []config.Docker{
+				{
+					ImageTemplates: []string{"whatever:latest"},
+					Dockerfile:     "testdata/Dockerfilezzz",
+				},
+			},
+			assertImageLabels: noLabels,
+			assertError:       shouldErr(`failed to link dockerfile`),
+		},
 	}
 
 	killAndRm(t)
@@ -286,6 +286,7 @@ func TestRunPipe(t *testing.T) {
 				Dist:        dist,
 				Dockers:     docker.dockers,
 			})
+
 			ctx.Parallelism = 1
 			ctx.Env = docker.env
 
