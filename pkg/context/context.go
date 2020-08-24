@@ -6,6 +6,7 @@ import (
 	"strings"
 	"time"
 
+	"github.com/wesleimp/rain/internal/artifact"
 	"github.com/wesleimp/rain/pkg/config"
 )
 
@@ -14,6 +15,7 @@ type Context struct {
 	ctx.Context
 	Config      config.Config
 	Env         Env
+	Artifacts   artifact.Artifacts
 	Date        time.Time
 	Timeout     time.Duration
 	Parallelism int
@@ -49,6 +51,7 @@ func Wrap(ctx ctx.Context, config config.Config) *Context {
 		Context:     ctx,
 		Config:      config,
 		Env:         splitEnv(append(os.Environ(), config.Env...)),
+		Artifacts:   artifact.New(),
 		Parallelism: 4,
 		Date:        time.Now(),
 	}

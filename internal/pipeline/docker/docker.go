@@ -10,6 +10,7 @@ import (
 	"github.com/apex/log"
 	"github.com/pkg/errors"
 
+	"github.com/wesleimp/rain/internal/artifact"
 	"github.com/wesleimp/rain/internal/files"
 	"github.com/wesleimp/rain/internal/semerrgroup"
 	"github.com/wesleimp/rain/internal/tmpl"
@@ -64,6 +65,14 @@ func run(ctx *context.Context) error {
 
 			if err := build(ctx, tmp, images, flags); err != nil {
 				return err
+			}
+
+			for _, img := range images {
+				ctx.Artifacts.Add(&artifact.Artifact{
+					Type: artifact.PublishableDockerImage,
+					Name: img,
+					Path: img,
+				})
 			}
 
 			return nil

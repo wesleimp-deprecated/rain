@@ -50,10 +50,10 @@ func killAndRm(t *testing.T) {
 		return
 	}
 	t.Log("killing registry")
-	_ = exec.Command("sudo", "docker", "kill", "registry").Run()
-	_ = exec.Command("sudo", "docker", "rm", "registry").Run()
-	_ = exec.Command("sudo", "docker", "kill", "alt_registry").Run()
-	_ = exec.Command("sudo", "docker", "rm", "alt_registry").Run()
+	_ = exec.Command("docker", "kill", "registry").Run()
+	_ = exec.Command("docker", "rm", "registry").Run()
+	_ = exec.Command("docker", "kill", "alt_registry").Run()
+	_ = exec.Command("docker", "rm", "alt_registry").Run()
 }
 
 func TestRunPipe(t *testing.T) {
