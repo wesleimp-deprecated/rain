@@ -156,7 +156,6 @@ func TestRunPipe(t *testing.T) {
 					},
 					Dockerfile: "testdata/Dockerfile.bin",
 					Files:      []config.File{{Glob: "testdata/file.txt"}},
-					SkipPush:   true,
 				},
 			},
 			expect: []string{
@@ -173,7 +172,6 @@ func TestRunPipe(t *testing.T) {
 					},
 					Dockerfile: "testdata/Dockerfile",
 					Files:      []config.File{{Glob: "testdata/file.txt"}},
-					SkipPush:   true,
 				},
 			},
 			expect: []string{

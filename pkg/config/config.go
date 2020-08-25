@@ -28,7 +28,6 @@ type Docker struct {
 	Dockerfile         string   `yaml:",omitempty"`
 	ImageTemplates     []string `yaml:"image_templates,omitempty"`
 	BuildFlagTemplates []string `yaml:"build_flag_templates,omitempty"`
-	SkipPush           bool     `yaml:"skip_push,omitempty"`
 	Files              []File   `yaml:",omitempty"`
 }
 
