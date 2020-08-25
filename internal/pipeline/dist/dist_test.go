@@ -40,7 +40,7 @@ func TestPopulatedDistExists(t *testing.T) {
 			Dist: dist,
 		},
 	}
-	assert.Error(t, Step{}.Run(ctx))
+	assert.NoError(t, Step{}.Run(ctx))
 	ctx.RmDist = true
 	assert.NoError(t, Step{}.Run(ctx))
 	_, err = os.Stat(dist)
