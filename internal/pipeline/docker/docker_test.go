@@ -123,7 +123,7 @@ func TestRunPipe(t *testing.T) {
 			assertError:    shouldNotErr,
 			pubAssertError: shouldNotErr,
 		},
-		"multiple images with same dockerfile": {
+		"multiple_images_with_same_dockerfile": {
 			dockers: []config.Docker{
 				{
 					ImageTemplates: []string{
@@ -172,6 +172,7 @@ func TestRunPipe(t *testing.T) {
 					},
 					Dockerfile: "testdata/Dockerfile",
 					Files:      []config.File{{Glob: "testdata/file.txt"}},
+					SkipPush:   true,
 				},
 			},
 			expect: []string{
@@ -180,7 +181,7 @@ func TestRunPipe(t *testing.T) {
 			assertImageLabels: noLabels,
 			assertError:       shouldNotErr,
 		},
-		"valid build args": {
+		"valid_build_args": {
 			dockers: []config.Docker{
 				{
 					ImageTemplates: []string{
@@ -200,7 +201,7 @@ func TestRunPipe(t *testing.T) {
 			assertError:       shouldNotErr,
 			pubAssertError:    shouldNotErr,
 		},
-		"bad build args": {
+		"bad_build_args": {
 			dockers: []config.Docker{
 				{
 					ImageTemplates: []string{

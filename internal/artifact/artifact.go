@@ -11,10 +11,8 @@ import (
 type Type int
 
 const (
-	// PublishableDockerImage is a Docker image yet to be published.
-	PublishableDockerImage Type = iota
 	// DockerImage is a published Docker image.
-	DockerImage
+	DockerImage Type = iota
 )
 
 func (t Type) String() string {
@@ -23,10 +21,8 @@ func (t Type) String() string {
 
 // Artifact represents an artifact and its relevant info.
 type Artifact struct {
-	Name  string
-	Path  string
-	Type  Type
-	Extra map[string]interface{}
+	Name string
+	Type Type
 }
 
 // Artifacts is a list of artifacts.
@@ -54,7 +50,6 @@ func (artifacts *Artifacts) Add(a *Artifact) {
 	defer artifacts.lock.Unlock()
 	log.WithFields(log.Fields{
 		"name": a.Name,
-		"path": a.Path,
 		"type": a.Type,
 	}).Debug("added new artifact")
 	artifacts.items = append(artifacts.items, a)

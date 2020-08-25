@@ -69,9 +69,8 @@ func run(ctx *context.Context) error {
 
 			for _, img := range images {
 				ctx.Artifacts.Add(&artifact.Artifact{
-					Type: artifact.PublishableDockerImage,
+					Type: artifact.DockerImage,
 					Name: img,
-					Path: img,
 				})
 			}
 

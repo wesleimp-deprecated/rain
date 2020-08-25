@@ -16,8 +16,8 @@ func TestAdd(t *testing.T) {
 			Type: DockerImage,
 		},
 		{
-			Name: "publishabledockerimage",
-			Type: PublishableDockerImage,
+			Name: "anotherimage",
+			Type: DockerImage,
 		},
 	} {
 		a := a

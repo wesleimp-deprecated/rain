@@ -10,8 +10,11 @@ builds:
 dockers:
   - dockerfile: 'Dockerfile'
     image_templates:
-      - 'rain:latest'
-      - 'rain:v{{ .Version }}'
+      - 'rainproj/rain:latest'
+      - 'rainproj/rain:v{{ .Version }}'
     files:
       - glob: scripts/entrypoint.sh
       - glob: rain
+
+pushes:
+  - provider: hub

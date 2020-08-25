@@ -9,6 +9,13 @@ import (
 	"gopkg.in/yaml.v2"
 )
 
+// Push constais all configuration for push images
+type Push struct {
+	Env      []string `yaml:",omitempty"`
+	Provider string   `yaml:",omitempty"`
+	Name     string   `yaml:",omitempty"`
+}
+
 // Build contains all build configuration section
 type Build struct {
 	Name    string   `yaml:",omitempty"`
@@ -29,6 +36,7 @@ type Docker struct {
 	ImageTemplates     []string `yaml:"image_templates,omitempty"`
 	BuildFlagTemplates []string `yaml:"build_flag_templates,omitempty"`
 	Files              []File   `yaml:",omitempty"`
+	SkipPush           bool     `yaml:"skip_push,omitempty"`
 }
 
 // Config contains the project configuration
@@ -38,6 +46,7 @@ type Config struct {
 	Env         []string `yaml:",omitempty"`
 	Builds      []Build  `yaml:",omitempty"`
 	Dockers     []Docker `yaml:",omitempty"`
+	Pushes      []Push   `yaml:",omitempty"`
 	Dist        string   `yaml:",omitempty"`
 }
 

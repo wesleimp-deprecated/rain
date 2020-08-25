@@ -7,6 +7,7 @@ import (
 	"github.com/rainproj/rain/internal/pipeline/defaults"
 	"github.com/rainproj/rain/internal/pipeline/dist"
 	"github.com/rainproj/rain/internal/pipeline/docker"
+	"github.com/rainproj/rain/internal/pipeline/push"
 	"github.com/rainproj/rain/pkg/context"
 )
 
@@ -23,4 +24,5 @@ var BuildPipeline = []Pipeliner{
 	dist.Step{},
 	build.Step{},
 	docker.Step{},
+	push.Step{},
 }
