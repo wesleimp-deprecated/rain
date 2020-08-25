@@ -3,6 +3,7 @@ package pipeline
 import (
 	"fmt"
 
+	"github.com/wesleimp/rain/internal/pipeline/build"
 	"github.com/wesleimp/rain/internal/pipeline/defaults"
 	"github.com/wesleimp/rain/internal/pipeline/dist"
 	"github.com/wesleimp/rain/internal/pipeline/docker"
@@ -20,5 +21,6 @@ type Pipeliner interface {
 var BuildPipeline = []Pipeliner{
 	defaults.Step{},
 	dist.Step{},
+	build.Step{},
 	docker.Step{},
 }

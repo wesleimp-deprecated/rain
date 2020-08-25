@@ -3,6 +3,10 @@ project_name: 'app'
 
 version: '0.1.0'
 
+builds:
+  - name: 'go'
+    command: 'go build -o rain main.go'
+
 dockers:
   - dockerfile: 'Dockerfile'
     image_templates:
