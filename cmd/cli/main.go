@@ -12,7 +12,7 @@ func Execute(version string, args []string) error {
 	app := &c.App{
 		Name:     "rain",
 		HelpName: "rain",
-		Usage:    "Deploy docker images and keep yout environments updated",
+		Usage:    "Build and deliver Docker images easily",
 		Version:  version,
 		Authors: []*c.Author{{
 			Name:  "Weslei Juan Moser Pereira",

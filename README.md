@@ -1,6 +1,6 @@
 # rain
 
-Build docker images easily
+Build and deliver docker images easily
 
 # Usage
 
@@ -10,7 +10,7 @@ Build docker images easily
 $ rain --help
 
 NAME:
-   rain - Deploy docker images and keep yout environments updated
+   rain - Build and deliver docker images easily
 
 USAGE:
    rain command [command options] [arguments...]
