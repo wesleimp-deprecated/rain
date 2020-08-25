@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	"github.com/wesleimp/rain/internal/pipeline/defaults"
+	"github.com/wesleimp/rain/internal/pipeline/dist"
 	"github.com/wesleimp/rain/internal/pipeline/docker"
 	"github.com/wesleimp/rain/pkg/context"
 )
@@ -15,8 +16,9 @@ type Pipeliner interface {
 	Run(*context.Context) error
 }
 
-// PackPipeline execution
+// BuildPipeline execution
 var BuildPipeline = []Pipeliner{
 	defaults.Step{},
+	dist.Step{},
 	docker.Step{},
 }

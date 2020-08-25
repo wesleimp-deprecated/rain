@@ -14,7 +14,9 @@ import (
 
 // Command build
 var Command = &cli.Command{
-	Name: "build",
+	Name:    "build",
+	Usage:   "Builds the current project",
+	Aliases: []string{"b"},
 	Flags: []cli.Flag{
 		&cli.StringFlag{Name: "config", Aliases: []string{"c"}, Value: ".rain.yml", Usage: "Load configuration from file"},
 		&cli.IntFlag{Name: "parallelism", Value: 2, Usage: "number of tasks running concurrently"},

@@ -1,8 +1,6 @@
 package dist
 
 import (
-	"fmt"
-	"io/ioutil"
 	"os"
 
 	"github.com/apex/log"
@@ -31,19 +29,8 @@ func (Step) Run(ctx *context.Context) (err error) {
 		}
 		return err
 	}
-	files, err := ioutil.ReadDir(ctx.Config.Dist)
-	if err != nil {
-		return
-	}
-	if len(files) != 0 {
-		log.Debugf("there are %d files on ./dist", len(files))
-		return fmt.Errorf(
-			"%s is not empty, remove it before running dim or use the --rm-dist flag",
-			ctx.Config.Dist,
-		)
-	}
-	log.Debug("./dist is empty")
-	return mkdir(ctx)
+
+	return nil
 }
 
 func mkdir(ctx *context.Context) error {
