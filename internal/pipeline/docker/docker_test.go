@@ -11,8 +11,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"github.com/wesleimp/rain/pkg/config"
-	"github.com/wesleimp/rain/pkg/context"
+	"github.com/rainproj/rain/pkg/config"
+	"github.com/rainproj/rain/pkg/context"
 )
 
 var it = flag.Bool("it", false, "push images to docker hub")

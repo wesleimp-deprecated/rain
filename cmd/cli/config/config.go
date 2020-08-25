@@ -4,7 +4,7 @@ import (
 	"errors"
 	"os"
 
-	"github.com/wesleimp/rain/pkg/config"
+	"github.com/rainproj/rain/pkg/config"
 )
 
 // Load config file

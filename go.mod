@@ -1,4 +1,4 @@
-module github.com/wesleimp/rain
+module github.com/rainproj/rain
 
 go 1.14
 

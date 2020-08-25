@@ -6,8 +6,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/wesleimp/rain/internal/artifact"
-	"github.com/wesleimp/rain/pkg/config"
+	"github.com/rainproj/rain/internal/artifact"
+	"github.com/rainproj/rain/pkg/config"
 )
 
 // Context carriers all data through the pipes

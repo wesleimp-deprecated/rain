@@ -3,8 +3,8 @@ package cli
 import (
 	c "github.com/urfave/cli/v2"
 
-	"github.com/wesleimp/rain/cmd/cli/commands/build"
-	ini "github.com/wesleimp/rain/cmd/cli/commands/init"
+	"github.com/rainproj/rain/cmd/cli/commands/build"
+	ini "github.com/rainproj/rain/cmd/cli/commands/init"
 )
 
 // Execute cli

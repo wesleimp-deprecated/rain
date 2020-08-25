@@ -3,11 +3,11 @@ package pipeline
 import (
 	"fmt"
 
-	"github.com/wesleimp/rain/internal/pipeline/build"
-	"github.com/wesleimp/rain/internal/pipeline/defaults"
-	"github.com/wesleimp/rain/internal/pipeline/dist"
-	"github.com/wesleimp/rain/internal/pipeline/docker"
-	"github.com/wesleimp/rain/pkg/context"
+	"github.com/rainproj/rain/internal/pipeline/build"
+	"github.com/rainproj/rain/internal/pipeline/defaults"
+	"github.com/rainproj/rain/internal/pipeline/dist"
+	"github.com/rainproj/rain/internal/pipeline/docker"
+	"github.com/rainproj/rain/pkg/context"
 )
 
 // Pipeliner interface

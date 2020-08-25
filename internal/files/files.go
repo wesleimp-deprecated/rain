@@ -8,7 +8,7 @@ import (
 	"github.com/mattn/go-zglob"
 	"github.com/pkg/errors"
 
-	"github.com/wesleimp/rain/pkg/config"
+	"github.com/rainproj/rain/pkg/config"
 )
 
 // Find resolves extra files globs et al into a map of names/paths or an error.

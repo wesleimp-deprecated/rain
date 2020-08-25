@@ -10,12 +10,12 @@ import (
 	"github.com/apex/log"
 	"github.com/pkg/errors"
 
-	"github.com/wesleimp/rain/internal/artifact"
-	"github.com/wesleimp/rain/internal/files"
-	"github.com/wesleimp/rain/internal/semerrgroup"
-	"github.com/wesleimp/rain/internal/tmpl"
-	"github.com/wesleimp/rain/pkg/config"
-	"github.com/wesleimp/rain/pkg/context"
+	"github.com/rainproj/rain/internal/artifact"
+	"github.com/rainproj/rain/internal/files"
+	"github.com/rainproj/rain/internal/semerrgroup"
+	"github.com/rainproj/rain/internal/tmpl"
+	"github.com/rainproj/rain/pkg/config"
+	"github.com/rainproj/rain/pkg/context"
 )
 
 // Step for dockers

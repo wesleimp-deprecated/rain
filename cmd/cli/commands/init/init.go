@@ -7,7 +7,7 @@ import (
 	"github.com/fatih/color"
 	"github.com/urfave/cli/v2"
 
-	"github.com/wesleimp/rain/internal/static"
+	"github.com/rainproj/rain/internal/static"
 )
 
 // Command init

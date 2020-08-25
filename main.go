@@ -6,7 +6,7 @@ import (
 	"github.com/apex/log"
 	cliHandler "github.com/apex/log/handlers/cli"
 
-	"github.com/wesleimp/rain/cmd/cli"
+	"github.com/rainproj/rain/cmd/cli"
 )
 
 var (

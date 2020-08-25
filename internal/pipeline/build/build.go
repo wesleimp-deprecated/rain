@@ -9,9 +9,9 @@ import (
 	"github.com/apex/log"
 	"github.com/fatih/color"
 	"github.com/pkg/errors"
-	"github.com/wesleimp/rain/internal/logger"
-	"github.com/wesleimp/rain/pkg/config"
-	"github.com/wesleimp/rain/pkg/context"
+	"github.com/rainproj/rain/internal/logger"
+	"github.com/rainproj/rain/pkg/config"
+	"github.com/rainproj/rain/pkg/context"
 )
 
 // Step for build

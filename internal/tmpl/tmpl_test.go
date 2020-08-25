@@ -5,8 +5,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"github.com/wesleimp/rain/pkg/config"
-	"github.com/wesleimp/rain/pkg/context"
+	"github.com/rainproj/rain/pkg/config"
+	"github.com/rainproj/rain/pkg/context"
 )
 
 func TestEnv(t *testing.T) {

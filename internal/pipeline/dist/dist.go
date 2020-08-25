@@ -4,7 +4,7 @@ import (
 	"os"
 
 	"github.com/apex/log"
-	"github.com/wesleimp/rain/pkg/context"
+	"github.com/rainproj/rain/pkg/context"
 )
 
 // Step for dist.

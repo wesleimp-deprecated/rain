@@ -7,7 +7,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"github.com/wesleimp/rain/pkg/config"
+	"github.com/rainproj/rain/pkg/config"
 )
 
 func TestNew(t *testing.T) {

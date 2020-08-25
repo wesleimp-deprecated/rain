@@ -3,8 +3,8 @@ package defaults
 import (
 	"errors"
 
-	"github.com/wesleimp/rain/pkg/context"
-	"github.com/wesleimp/rain/pkg/defaults"
+	"github.com/rainproj/rain/pkg/context"
+	"github.com/rainproj/rain/pkg/defaults"
 )
 
 // Step for defaults
