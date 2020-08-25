@@ -5,6 +5,8 @@ import (
 
 	"github.com/apex/log"
 	"github.com/caarlos0/ctrlc"
+	"github.com/fatih/color"
+	"github.com/pkg/errors"
 	"github.com/rainproj/rain/cmd/cli/config"
 	"github.com/rainproj/rain/internal/middleware"
 	"github.com/rainproj/rain/pkg/context"
@@ -24,6 +26,9 @@ var Command = &cli.Command{
 		&cli.BoolFlag{Name: "rm-dist", Value: false, Usage: "remove the dist folder before build"},
 	},
 	Action: func(c *cli.Context) error {
+		start := time.Now()
+		log.Infof(color.New(color.Bold).Sprint("building..."))
+
 		conf := c.String("config")
 		cfg, err := config.Load(conf)
 		if err != nil {
@@ -32,7 +37,7 @@ var Command = &cli.Command{
 		ctx, cancel := context.NewWithTimeout(cfg, c.Duration("timeout"))
 		defer cancel()
 		setupPushContext(ctx, c)
-		return ctrlc.Default.Run(ctx, func() error {
+		err = ctrlc.Default.Run(ctx, func() error {
 			for _, pipe := range pipeline.BuildPipeline {
 				if err := middleware.Log(
 					pipe.String(),
@@ -44,6 +49,12 @@ var Command = &cli.Command{
 			}
 			return nil
 		})
+		if err != nil {
+			return errors.Wrap(err, color.New(color.Bold).Sprintf("build failed after %0.2fs", time.Since(start).Seconds()))
+		}
+
+		log.Infof(color.New(color.Bold).Sprintf("build succeeded after %0.2fs", time.Since(start).Seconds()))
+		return nil
 	},
 }
 
