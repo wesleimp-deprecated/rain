@@ -24,20 +24,26 @@ COMMANDS:
 ## Example config
 
 ```yml
-project_name: 'app'
-
+# .rain.yml
+project_name: 'rain'
 version: '0.1.0'
 
+# build application
 builds:
   - name: 'go'
-    command: 'go build -o app main.go'
+    command: 'go build -o rain main.go'
 
+# build docker images
 dockers:
   - dockerfile: 'Dockerfile'
     image_templates:
-      - 'app:latest'
-      - 'app:v{{ .Version }}'
+      - 'rainproj/rain:latest'
+      - 'rainproj/rain:v{{ .Version }}'
     files:
       - glob: scripts/entrypoint.sh
-      - glob: app
+      - glob: rain
+
+# push to docker hub
+pushes:
+  - provider: hub
 ```
