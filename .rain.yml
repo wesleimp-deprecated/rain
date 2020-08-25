@@ -1,10 +1,13 @@
 # .rain.yml
 project_name: 'app'
 
+version: '0.1.0'
+
 dockers:
   - dockerfile: 'Dockerfile'
     image_templates:
-      - 'local/rain:latest'
-    extra_files:
+      - 'rain:latest'
+      - 'rain:v{{ .Version }}'
+    files:
       - glob: scripts/entrypoint.sh
       - glob: rain

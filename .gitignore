@@ -16,3 +16,4 @@
 
 dist/
 !internal/pipeline/dist
+rain
