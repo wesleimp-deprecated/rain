@@ -24,5 +24,7 @@ var BuildPipeline = []Pipeliner{
 	dist.Step{},
 	build.Step{},
 	docker.Step{},
-	push.Step{},
 }
+
+// PushPipeline execution order
+var PushPipeline = append(BuildPipeline, push.Step{})

@@ -5,6 +5,7 @@ import (
 
 	"github.com/rainproj/rain/cmd/cli/commands/build"
 	ini "github.com/rainproj/rain/cmd/cli/commands/init"
+	"github.com/rainproj/rain/cmd/cli/commands/push"
 )
 
 // Execute cli
@@ -21,6 +22,7 @@ func Execute(version string, args []string) error {
 		Commands: []*c.Command{
 			ini.Command,
 			build.Command,
+			push.Command,
 		},
 	}
 
