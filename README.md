@@ -1,17 +1,25 @@
 <p align="center">
   <a href="https://github.com/rainproj/rain">
     <img alt="rain"
-         width="400" height="400"
+         width="200" height="200"
          src="https://raw.githubusercontent.com/rainproj/rain/master/docs/assets/rain-logo-light.png">
   </a>
 </p>
 
-<h2 align="center">
+<h3 align="center">
 Build and deliver Docker images easily
-</h2>
+</h3>
+
+---
 
 ![ci](https://github.com/rainproj/rain/workflows/ci/badge.svg)
 
-# License
+Rain builds Docker images via configuration file and release them to your storage provider
+
+## Documentation
+
+Documentation is hosted live [here](https://rainproj.netlify.com)
+
+## License
 
 [MIT](https://github.com/rainproj/rain/blob/master/LICENSE)
