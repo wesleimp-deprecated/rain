@@ -23,7 +23,7 @@ dockers:
   - dockerfile: 'Dockerfile'
     image_templates:
       - 'myorg/app:latest'
-      - 'myorg/app:{{ .FOO }}'
+      - 'myorg/app:{{ .Env.FOO }}'
     files:
       - glob: scripts/myscript.sh
 ```
