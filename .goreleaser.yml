@@ -9,28 +9,29 @@ before:
     - go mod download
 
 builds:
-  - binary: rain
-    env:
-      - CGO_ENABLED=0
+- binary: rain
+  env:
+    - CGO_ENABLED=0
 
-goos:
-  - linux
-  - darwin
-  - windows
-goarch:
-  - 386
-  - amd64
-  - arm
-  - arm64
-mod_timestamp: '{{ .CommitTimestamp }}'
-flags:
-  - -trimpath
-ldflags:
-  - -s -w -X main.version={{.Version}} -X main.commit={{.Commit}} -X main.date={{ .CommitDate }} -X main.builtBy=rainproj
+  goos:
+    - linux
+    - darwin
+    - windows
+  goarch:
+    - 386
+    - amd64
+    - arm
+    - arm64
+  mod_timestamp: '{{ .CommitTimestamp }}'
+  flags:
+    - -trimpath
+  ldflags:
+    - -s -w -X main.version={{.Version}} -X main.commit={{.Commit}} -X main.date={{ .CommitDate }} -X main.builtBy=rainproj
 
 checksum:
   name_template: '{{ .ProjectName }}_checksums.txt'
-  changelog:
+
+changelog:
   sort: asc
   filters:
     exclude:
@@ -41,9 +42,10 @@ checksum:
       - go mod tidy
 
 dockers:
-  - image_templates:
-    - 'rainproj/rain:{{ .Tag }}'
+- image_templates:
     - 'rainproj/rain:latest'
+    - 'rainproj/rain:{{ .Tag }}'
+
   dockerfile: Dockerfile
   binaries:
     - rain
@@ -68,6 +70,6 @@ archives:
       windows: Windows
       386: i386
       amd64: x86_64
-      format_overrides:
-        - goos: windows
+    format_overrides:
+    - goos: windows
       format: zip
